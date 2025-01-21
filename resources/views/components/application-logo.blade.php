@@ -1,0 +1,1 @@
+<img src="{{ asset('images/invitacion.png') }}" alt="Logo" {{ $attributes }} />
