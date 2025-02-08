@@ -17,6 +17,7 @@ class PermissionSeeder extends Seeder
             'manage roles',
             'manage permissions',
             'view dashboard',
+            'ver-graficas'
         ];
 
         foreach ($permissions as $permission) {
