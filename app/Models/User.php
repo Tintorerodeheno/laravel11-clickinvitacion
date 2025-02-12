@@ -84,5 +84,11 @@ public function getPanelRoleTextAttribute()
     return 'Panel';
 }
 
+ // 🔹 Relación con los eventos
+ public function eventos()
+ {
+     return $this->hasMany(Evento::class);
+ }
+
 
 }

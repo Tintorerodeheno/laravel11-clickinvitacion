@@ -12,14 +12,17 @@ class DatabaseSeeder extends Seeder
      * Seed the application's database.
      */
     public function run(): void
-    {
-        // Si deseas mantener el usuario de prueba, déjalo aquí.
-        User::factory()->create([
+{
+    // Evita duplicar el usuario de prueba
+    User::firstOrCreate(
+        ['email' => 'test@example.com'], // Condición: Si ya existe este email, no lo crea
+        [
             'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+            'password' => bcrypt('password'), // Asegura que tenga un password válido
+        ]
+    );
 
-        // Registra el PermissionSeeder
-        $this->call(PermissionSeeder::class);
-    }
+    // Registra el PermissionSeeder
+    $this->call(PermissionSeeder::class);
+}
 }

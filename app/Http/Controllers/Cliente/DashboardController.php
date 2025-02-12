@@ -7,8 +7,8 @@ use App\Http\Controllers\ProfileController;
 
 class DashboardController extends Controller
 {
-    public function index()
+    public function index($view = 'crear-evento')
     {
-        return view('cliente.dashboard');
+        return view('cliente.dashboard', compact('view'));
     }
 }

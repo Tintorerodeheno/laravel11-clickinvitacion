@@ -65,6 +65,8 @@ Route::middleware(['auth', 'role:cliente'])->group(function () {
 
 
 
+
+
 // Welcome
 Route::get('/', function () {
     return view('welcome');
