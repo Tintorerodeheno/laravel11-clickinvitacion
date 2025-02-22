@@ -19,7 +19,10 @@ class PermissionSeeder extends Seeder
             'view dashboard',
             'ver-graficas',
             'ver-crear-evento',
-            'ver-eventos-listado'
+            'ver-eventos-listado',
+            'ver-seguimiento-invitados',
+            'ver-cuenta',
+            'ver-comunicados'
         ];
 
         foreach ($permissions as $permission) {

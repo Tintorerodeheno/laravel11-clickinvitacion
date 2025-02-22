@@ -1,4 +1,4 @@
-<div class="p-6 relative">
+<div class="p-4 md:p-6 relative">
     <!-- Alerta fija en la parte superior -->
     @if(session()->has('message'))
         <div x-data="{ show: true }"
@@ -16,27 +16,27 @@
     @endif
 
     <!-- Encabezado -->
-    <h2 class="text-2xl text-center font-bold text-gray-900 mb-2">Crear nuevo evento</h2>
-    <p class="text-gray-600 mb-6 text-center">
+    <h2 class="text-xl md:text-2xl text-center font-bold text-gray-900 mb-2">Crear nuevo evento</h2>
+    <p class="text-gray-600 mb-4 text-center">
         En este apartado puedes crear un nuevo evento desde cero. 
-        Elige el tipo de evento que mejor te encaje según tus necesidades.
+        Elige el tipo de evento que mejor se ajuste a tus necesidades.
     </p>
 
     <!-- Selección de tipo de evento -->
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 md:gap-6">
         @foreach(['Boda', '15 Años', 'Comunión', 'Bautizo', 'Baby Shower', 'Cumpleaños', 'Empresas', 'Graduación'] as $evento)
             @php
                 $eventoSlug = strtolower(str_replace([' ', 'á', 'é', 'í', 'ó', 'ú', 'ñ'], ['_', 'a', 'e', 'i', 'o', 'u', 'n'], $evento));
             @endphp
-            <div class="bg-white rounded-lg shadow-md p-4 text-center">
+            <div class="bg-white rounded-lg shadow-md p-3 text-center">
                 <img 
                     src="{{ asset('img/eventos/' . $eventoSlug . '-small.jpg') }}" 
                     srcset="
                         {{ asset('img/eventos/' . $eventoSlug . '-small.jpg') }} 480w,
                         {{ asset('img/eventos/' . $eventoSlug . '-large.jpg') }} 800w"
-                    sizes="(max-width: 600px) 180px, 223px"
+                    sizes="(max-width: 600px) 150px, 200px"
                     alt="{{ $evento }}" 
-                    class="w-[223px] h-[241px] object-cover mx-auto mb-3 rounded-lg shadow"
+                    class="w-[200px] h-[220px] object-cover mx-auto mb-3 rounded-lg shadow"
                     loading="lazy">
                 <button wire:click="seleccionarTipo('{{ $evento }}')"
                         @click="modalOpen = true"
@@ -52,10 +52,10 @@
         <template x-if="modalOpen">
             <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
                 <div x-show="modalOpen"
-                x-transition:enter="transition ease-out duration-[800ms]"
+                x-transition:enter="transition ease-out duration-300"
                 x-transition:enter-start="opacity-0 scale-90"
                 x-transition:enter-end="opacity-100 scale-100"
-                x-transition:leave="transition ease-in duration-[800ms]"
+                x-transition:leave="transition ease-in duration-300"
                 x-transition:leave-start="opacity-100 scale-100"
                 x-transition:leave-end="opacity-0 scale-90"
                 class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md relative">
@@ -67,7 +67,7 @@
                     </button>
                     
                     <!-- Contenido del Modal -->
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">
+                    <h3 class="text-lg md:text-xl font-semibold text-gray-900 mb-4">
                         Cuéntanos de tu evento: {{ $tipoSeleccionado }}
                     </h3>
                     <form wire:submit.prevent="guardarEvento" class="space-y-4">
@@ -86,7 +86,7 @@
                             <div>
                                 <label class="block text-gray-700">
                                     @if($tipoSeleccionado === '15 Años') Nombre de la Quinceañera
-                                    @elseif($tipoSeleccionado === 'Bautizo') Nombre del/la protagonista
+                                    @elseif($tipoSeleccionado === 'Bautizo') Nombre del protagonista
                                     @else Nombre del Evento @endif
                                 </label>
                                 <input type="text" wire:model="nombre"

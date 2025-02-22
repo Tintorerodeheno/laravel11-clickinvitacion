@@ -24,4 +24,8 @@ class Evento extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function gruposInvitados()
+{
+    return $this->hasMany(GrupoInvitados::class);
+}
 }

@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     @vite(['resources/css/app.css'])
-    @php
+    {{-- @php
         $menuItems = [
             [
                 'label' => 'Nuevo Evento',
@@ -30,11 +30,11 @@
             ],
             
         ];
-    @endphp
+    @endphp --}}
 </head>
 
 <body class="bg-gray-100">
-    <div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-100">
+    {{-- <div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-100">
         <!-- Sidebar -->
         <nav class="fixed inset-y-0 left-0 w-64 bg-slate-300 text-stone-900 shadow-2xl 
            transform transition-transform duration-300 sm:relative sm:translate-x-0 
@@ -162,13 +162,14 @@
                         </form>
                     </div>
                 </div>
-            </header>
-            <main class="flex-1 overflow-y-auto bg-gray-100 p-6">
+            </header> --}}
+            <main class="flex-1 overflow-y-auto bg-gray-100">
                 @yield('content')
                 {{ $slot }}
+                
             </main>
-        </div>
-    </div>
+        {{-- </div>
+    </div> --}}
     @livewireScripts
 </body>
 
