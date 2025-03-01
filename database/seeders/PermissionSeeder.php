@@ -22,7 +22,10 @@ class PermissionSeeder extends Seeder
             'ver-eventos-listado',
             'ver-seguimiento-invitados',
             'ver-cuenta',
-            'ver-comunicados'
+            'ver-comunicados',
+            'ver-cabecera',
+            'ver-cuenta-regresiva',
+            'ver-direccion'
         ];
 
         foreach ($permissions as $permission) {

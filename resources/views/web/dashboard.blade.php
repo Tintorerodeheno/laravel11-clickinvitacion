@@ -1,9 +1,10 @@
-@extends('layouts.cliente')
+@extends('layouts.web')
 
 @section('title', 'Dashboard')
 
 @section('content')
 
-    <livewire:cliente.tabs-cliente />
+<livewire:webevent.web-event-panel />
+
 
 @endsection

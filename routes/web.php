@@ -8,6 +8,7 @@ use App\Http\Controllers\SuperAdmin\DashboardController as SuperAdminController;
 use App\Http\Controllers\Vendedor\DashboardController as VendedorDashboard;
 use App\Http\Controllers\Convenio\DashboardController as ConvenioDashboard;
 use App\Http\Controllers\Cliente\DashboardController as ClienteDashboard;
+use App\Http\Controllers\web\DashboardController as WebDashboard;
 use Illuminate\Support\Facades\Auth;
 use App\Livewire\Admin\Graficas;
 
@@ -52,6 +53,11 @@ Route::middleware(['auth', 'role:convenio'])->prefix('convenio')->name('convenio
 Route::middleware(['auth', 'role:cliente'])->group(function () {
     Route::get('/cliente/dashboard/{view?}', [ClienteDashboard::class, 'index'])
         ->name('cliente.dashboard');
+});
+
+Route::middleware(['auth', 'role:cliente'])->group(function () {
+    Route::get('/web/dashboard/{view?}', [WebDashboard::class, 'index'])
+        ->name('web.dashboard');
 });
 
 
