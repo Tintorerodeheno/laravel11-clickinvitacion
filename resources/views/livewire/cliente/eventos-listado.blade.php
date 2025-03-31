@@ -50,7 +50,7 @@
                             <a href="#" class="bg-blue-600 text-white px-3 py-2 rounded-md flex items-center gap-1 hover:bg-blue-700 shadow">
                                 <i class="fas fa-edit"></i> Editar
                             </a>
-                            <a href="#" class="bg-green-600 text-white px-3 py-2 rounded-md flex items-center gap-1 hover:bg-green-700 shadow">
+                            <a href="{{ url('/web/dashboard') }}" class="bg-green-600 text-white px-3 py-2 rounded-md flex items-center gap-1 hover:bg-green-700 shadow">
                                 <i class="fas fa-check"></i> Activar Web
                             </a>
                             <a href="#" class="bg-yellow-500 text-white px-3 py-2 rounded-md flex items-center gap-1 hover:bg-yellow-600 shadow">

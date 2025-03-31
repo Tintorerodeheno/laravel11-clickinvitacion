@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Livewire\Webevent\Diseño\DatosEvento;
+namespace App\Livewire\Webevent\Diseno\DatosEvento;
 
 use Livewire\Component;
+use Illuminate\Support\Facades\Log;
 
 class DatosEvento extends Component
 {
@@ -11,20 +12,25 @@ class DatosEvento extends Component
 
     protected $listeners = ['openDatosEvento' => 'showModal'];
 
+    public function mount()
+{
+    logger("🟢 Componente DatosEvento montado.");
+}
+
+
     public function showModal()
     {
-        $this->modalVisible = true;
-        $this->modalIndex = 0;
-        logger("Modal abierto correctamente.");
+        logger("📢 Evento recibido correctamente.");
     }
 
     public function closeModal()
     {
+        Log::info("❌ Modal de Livewire cerrado");
         $this->modalVisible = false;
     }
 
     public function render()
     {
-        return view('livewire.webevent.diseño.datosevento.datos-evento');
+        return view('livewire.webevent.diseno.datosevento.datos-evento');
     }
 }

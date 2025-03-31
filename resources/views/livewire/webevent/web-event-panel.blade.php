@@ -42,17 +42,10 @@
     <div class="flex-1 p-8">
         <h1 class="text-2xl font-bold">Vista Previa de la Invitación</h1>
         <div class="border mt-4 p-4">
-            @if (in_array('cabecera', $selectedSections))
-                <livewire:webevent.cabecera />
-            @endif
-            @if (in_array('cuenta-regresiva', $selectedSections))
-                <livewire:webevent.cuenta-regresiva />
-            @endif
-            @if (in_array('direccion', $selectedSections))
-                <livewire:webevent.direccion />
-            @endif
+            @livewire('web-event.invitacion-component')
         </div>
     </div>
+    
 
     <!-- MODAL PRINCIPAL -->
     <div x-show="activeModal" class="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50">
@@ -70,55 +63,94 @@
 
             <!-- Contenido del modal Diseño -->
             <div x-show="activeModal === 'diseno'" class="mt-4 space-y-2">
-                <!-- Botón principal ocupando todo el ancho -->
-                <button @click="$dispatch('closeWebEventPanel'); Livewire.dispatch('openDatosEvento')" 
-        class="bg-blue-500 text-white px-4 py-2 rounded">
-    Datos del evento
-</button>
+                <div x-data="modalController()">
+                    <!-- BOTÓN QUE ABRE EL PRIMER MODAL -->
+                    <button @click="openModal('modal1')" class="bg-blue-600 text-white px-4 py-2 rounded">
+                        Abrir Modal 1
+                    </button>
+                
+                    <!-- MODALES USANDO COMPONENTES -->
+                    <x-webevent.modal1 />
+                    <x-webevent.modal2 />
+                    <x-webevent.modal3 />
+                </div>
+                
+                <!-- SCRIPT ALPINE.JS -->
+                <script>
+                    function modalController() {
+                        return {
+                            activeModal: null,
+                            modalHistory: [],
+                
+                            openModal(modalName) {
+                                if (this.activeModal) {
+                                    this.modalHistory.push(this.activeModal);
+                                }
+                                this.activeModal = modalName;
+                            },
+                
+                            goBack() {
+                                if (this.modalHistory.length > 0) {
+                                    this.activeModal = this.modalHistory.pop();
+                                } else {
+                                    this.activeModal = null;
+                                }
+                            },
+                
+                            closeModal() {
+                                this.activeModal = null;
+                                this.modalHistory = [];
+                            }
+                        }
+                    }
+                </script>
+                
                 
 
-                <!-- Contenedor con grid para pares de botones -->
-                <div class="grid grid-cols-2 gap-2">
-                    <!-- Botón Secciones -->
-                    <button @click="innerModal = true" class="bg-blue-600 text-white px-4 py-2 rounded">
-                        Secciones
-                    </button>
 
-                    <!-- Botón Idioma -->
-                    <button @click="innerModal = true" class="bg-blue-600 text-white px-4 py-2 rounded">
-                        Idioma
-                    </button>
 
-                    <!-- Botón Texto -->
-                    <button @click="innerModal = true" class="bg-blue-600 text-white px-4 py-2 rounded">
-                        Texto
-                    </button>
+            <!-- Contenedor con grid para pares de botones -->
+                    <div class="grid grid-cols-2 gap-2">
+                        <!-- Botón Secciones -->
+                        <button @click="innerModal = true" class="bg-blue-600 text-white px-4 py-2 rounded">
+                            Secciones
+                        </button>
 
-                    <!-- Botón Fotos -->
-                    <button @click="innerModal = true" class="bg-blue-600 text-white px-4 py-2 rounded">
-                        Fotos
-                    </button>
+                        <!-- Botón Idioma -->
+                        <button @click="innerModal = true" class="bg-blue-600 text-white px-4 py-2 rounded">
+                            Idioma
+                        </button>
 
-                    <!-- Botón Colores -->
-                    <button @click="innerModal = true" class="bg-blue-600 text-white px-4 py-2 rounded">
-                        Colores
-                    </button>
+                        <!-- Botón Texto -->
+                        <button @click="innerModal = true" class="bg-blue-600 text-white px-4 py-2 rounded">
+                            Texto
+                        </button>
 
-                    <!-- Botón Música -->
-                    <button @click="innerModal = true" class="bg-blue-600 text-white px-4 py-2 rounded">
-                        Música
-                    </button>
+                        <!-- Botón Fotos -->
+                        <button @click="innerModal = true" class="bg-blue-600 text-white px-4 py-2 rounded">
+                            Fotos
+                        </button>
 
-                    <!-- Botón Fuente -->
-                    <button @click="innerModal = true" class="bg-blue-600 text-white px-4 py-2 rounded">
-                        Fuente
-                    </button>
+                        <!-- Botón Colores -->
+                        <button @click="innerModal = true" class="bg-blue-600 text-white px-4 py-2 rounded">
+                            Colores
+                        </button>
 
-                    <!-- Botón Decoraciones -->
-                    <button @click="innerModal = true" class="bg-blue-600 text-white px-4 py-2 rounded">
-                        Decoraciones
-                    </button>
-                </div>
+                        <!-- Botón Música -->
+                        <button @click="innerModal = true" class="bg-blue-600 text-white px-4 py-2 rounded">
+                            Música
+                        </button>
+
+                        <!-- Botón Fuente -->
+                        <button @click="innerModal = true" class="bg-blue-600 text-white px-4 py-2 rounded">
+                            Fuente
+                        </button>
+
+                        <!-- Botón Decoraciones -->
+                        <button @click="innerModal = true" class="bg-blue-600 text-white px-4 py-2 rounded">
+                            Decoraciones
+                        </button>
+                    </div>
             </div>
 
 
@@ -163,12 +195,5 @@
             </div>
         </div>
     </div>
+  
 </div>
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        Livewire.on('openDatosEvento', () => {
-            document.getElementById('webEventPanelModal')?.classList.add('hidden');
-        });
-    });
-    </script>
-    
