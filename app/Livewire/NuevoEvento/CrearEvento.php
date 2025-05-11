@@ -46,13 +46,14 @@ class CrearEvento extends Component
 
     // ✅ Asegurar que user_id se pase correctamente
     Evento::create([
-        'user_id'      => Auth::id(), // 💡 Agregamos el usuario autenticado
+        'user_id'      => Auth::id(), // ✅ Aseguramos que el evento tenga un usuario
         'tipo_evento'  => $this->tipoSeleccionado,
         'nombre'       => $this->tipoSeleccionado === 'Boda' ? null : $this->nombre,
         'novio'        => $this->tipoSeleccionado === 'Boda' ? $this->novio : null,
         'novia'        => $this->tipoSeleccionado === 'Boda' ? $this->novia : null,
         'fecha_evento' => $this->fecha,
     ]);
+    
 
     session()->flash('message', '¡Evento creado con éxito!');
 
